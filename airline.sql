@@ -120,5 +120,4 @@ FROM customers c
 JOIN flights f ON c.cust_flight_number = f.flight_number
 GROUP BY c.cust_status;
 
----- 
 
