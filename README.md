@@ -36,6 +36,15 @@ Una vez que termines la tarea, envía un enlace URL a tu repositorio o tu solici
 | Maria Charlotte | Homemade Art Hacks          | 1002       | 193   |  
 | Gemma Alcocer   | Refinishing Wood Floors     | 1571       | 7542  |  
 
+| ID | author          | title                       | word count | views |  
+|---| --------------- | --------------------------- | ---------- | ----- |  
+| 1 | Maria Charlotte | Best Paint Colors           | 814        | 14    |  
+| 2 | Juan Perez      | Small Space Decorating Tips | 1146       | 221   |  
+| 3 | Maria Charlotte | Hot Accessories             | 986        | 105   |  
+| 4 | Maria Charlotte | Mixing Textures             | 765        | 22    |  
+| 5 | Juan Perez      | Kitchen Refresh             | 1242       | 307   |  
+| 6 | Maria Charlotte | Homemade Art Hacks          | 1002       | 193   |  
+| 7 | Gemma Alcocer   | Refinishing Wood Floors     | 1571       | 7542  |  
 <br>  
 
 2. Normalice la siguiente base de datos de aerolíneas y escriba los scripts DDL para crear las tablas de la base de datos:
@@ -58,9 +67,48 @@ Una vez que termines la tarea, envía un enlace URL a tu repositorio o tu solici
 | Jennifer Cortez  | Gold            | DL222         | Boeing 777  | 264                  | 1765           | 300582                 |  
 | Jessica James    | Silver          | DL122         | Airbus A330 | 236                  | 4370           | 127656                 |  
 | Sam Rio          | None            | DL37          | Boeing 747  | 400                  | 531            | 2653                   |  
-| Christian Janco  | Silver          | DL222         | Boeing 777  | 264                  | 1765           | 14642                  |  
+| Christian Janco  | Silver          | DL222         | Boeing 777  | 264                  | 1765           | 14642                  |                        
 
-<br>  
+
+| ID | Customer Name    | Customer Status | Flight Number | Aircraft    | Total Aircraft Seats | Flight Mileage | Total Customer Mileage |  
+|----| ---------------- | --------------- | ------------- | ----------- |----------------------| -------------- | ---------------------- |  
+| 1  | Agustine Riviera | Silver          | DL143         | Boeing 747  | 400                  | 135            | 115235                 |  
+| 2  | Agustine Riviera | Silver          | DL122         | Airbus A330 | 236                  | 4370           | 115235                 |  
+| 3  | Alaina Sepulvida | None            | DL122         | Airbus A330 | 236                  | 4370           | 6008                   |  
+| 4  | Agustine Riviera | Silver          | DL143         | Boeing 747  | 400                  | 135            | 115235                 |  
+| 5  | Tom Jones        | Gold            | DL122         | Airbus A330 | 236                  | 4370           | 205767                 |  
+| 6  | Tom Jones        | Gold            | DL53          | Boeing 777  | 264                  | 2078           | 205767                 |  
+| 7  | Agustine Riviera | Silver          | DL143         | Boeing 747  | 400                  | 135            | 115235                 |  
+| 8  | Sam Rio          | None            | DL143         | Boeing 747  | 400                  | 135            | 2653                   |  
+| 9  | Agustine Riviera | Silver          | DL143         | Boeing 747  | 400                  | 135            | 115235                 |  
+| 10 | Tom Jones        | Gold            | DL222         | Boeing 777  | 264                  | 1765           | 205767                 |  
+| 11 | Jessica James    | Silver          | DL143         | Boeing 747  | 400                  | 135            | 127656                 |  
+| 12 | Sam Rio          | None            | DL143         | Boeing 747  | 400                  | 135            | 2653                   |  
+| 13 | Ana Janco        | Silver          | DL222         | Boeing 777  | 264                  | 1765           | 136773                 |  
+| 14 | Jennifer Cortez  | Gold            | DL222         | Boeing 777  | 264                  | 1765           | 300582                 |  
+| 15 | Jessica James    | Silver          | DL122         | Airbus A330 | 236                  | 4370           | 127656                 |  
+| 16 | Sam Rio          | None            | DL37          | Boeing 747  | 400                  | 531            | 2653                   |  
+| 17 | Christian Janco  | Silver          | DL222         | Boeing 777  | 264                  | 1765           | 14642                  |
+
+FLIGHT ID
+
+| ID |    Flight Number    | Aircraft   | Total Aircraft Seats | Flight Mileage |
+|----|:-------------------:|------------|:--------------------:|:--------------:|
+| 1  |        DL143        | Boeing 747 |         400          |      135       |
+| 2  |        DL122        | Airbus A330|         236          |      4370      |
+| 3  |        DL53         | Boeing 777 |         264          |      2078      |
+| 4  |        DL222        | Boeing 777 |         264          |      1765      |
+| 5  |        DL37         | Boeing 747 |         400          |      531       |
+
+STATUS ID
+
+| ID | Customer Status |
+|----|-----------------|
+| 1  | Gold            |
+| 2  | Silver          |
+| 3  | None            |
+
+<br>
 
 3. En la base de datos de aerolíneas escriba el script SQL para obtener el número total de vuelos en la base de datos.
 4. En la base de datos de aerolíneas escriba el script SQL para obtener la distancia promedio de vuelo.
