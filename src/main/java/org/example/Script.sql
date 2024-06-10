@@ -144,13 +144,6 @@ JOIN Flight ON FH.FlightID = Flight.FlightID
 GROUP BY CustomerStatus;
 
 -- 11) AERONAVE MÁS A MENUDO RESERVADA POR MIEMBROS GOLD
-SELECT CustomerStatus
-FROM Customer C
-JOIN FlightHistory FH ON C.CustomerID = FH.CustomerID
-JOIN Flight F ON FH.FlightID = F.FlightID
-WHERE CustomerStatus LIKE 'Gold';
-
--- 12) AERONAVE MÁS A MENUDO RESERVADA POR LOS MIEMBROS GOLD
 SELECT F.AircraftType, COUNT(*) AS NumberOfFlights
 FROM Customer C
 JOIN FlightHistory FH ON C.CustomerID = FH.CustomerID
