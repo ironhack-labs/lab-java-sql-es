@@ -72,6 +72,15 @@ Una vez que termines la tarea, envía un enlace URL a tu repositorio o tu solici
 10. En la base de datos de aerolíneas escriba el script SQL para encontrar la distancia promedio de vuelo reservada agrupada por estatus de cliente (esto requerirá una unión).
 11. En la base de datos de aerolíneas escriba el script SQL para encontrar la aeronave más a menudo reservada por los miembros de estatus de oro (esto requerirá una unión).
 
+
+## Instrucciones de Ejecución
+
+He creado un `docker-compose` que al iniciar el contenedor ejecutará la creación de las bases de datos a partir del ejercicio 3, las cuales se encuentran en la carpeta `consultas`. Estas bases de datos deberán ejecutarse de la manera que se optimice pertinente.
+
+El `docker-compose` inicia en el puerto **3307** para evitar conflictos con una posible instalación de MySQL en su equipo. Si desea modificarlo, puede hacerlo directamente en el archivo `docker-compose`. Además, la contraseña por defecto en el mismo es **rootroot**, pero puede cambiarla si lo considera necesario.
+
+
+
 <br>  
 
 ## FAQs (Preguntas frecuentes)
@@ -249,3 +258,4 @@ FULL OUTER JOIN:
   ```
 
 </details>
+
