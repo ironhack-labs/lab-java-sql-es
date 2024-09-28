@@ -1,70 +1,111 @@
-CREATE TABLE aerolineas
+CREATE TABLE aircraft
 (
-    costumerName VARCHAR(255),
-    customerStatus VARCHAR(255),
-    flightNumber VARCHAR(255),
-    aircraft VARCHAR(255),
-    totalAircraftSeats INT,
-    flightMileage INT,
-    totalCustomerMileage INT
+    models VARCHAR(255) PRIMARY KEY ,
+    total_aircraftSeats INT
 );
 
-INSERT INTO aerolineas( costumerName,
-                        customerStatus,
-                        flightNumber,
-                        aircraft,
-                        totalAircraftSeats,
-                        flightMileage,
-                        totalCustomerMileage)
-VALUES
-    ('Agustine Riviera', 'Silver', 'DL143', 'Boeing 747', 400, 135, 115235),
-    ('Agustine Riviera', 'Silver', 'DL122', 'Airbus A330', 236, 4370, 115235),
-    ('Alaina Sepulvida', 'None', 'DL122', 'Airbus A330', 236, 4370, 6008),
-    ('Agustine Riviera', 'Silver', 'DL143', 'Boeing 747', 400, 135, 115235),
-    ('Tom Jones', 'Gold', 'DL122', 'Airbus A330', 236, 4370, 205767),
-    ('Tom Jones', 'Gold', 'DL53', 'Boeing 777', 264, 2078, 205767),
-    ('Agustine Riviera', 'Silver', 'DL143', 'Boeing 747', 400, 135, 115235),
-    ('Sam Rio', 'None', 'DL143', 'Boeing 747', 400, 135, 2653),
-    ('Agustine Riviera', 'Silver', 'DL143', 'Boeing 747', 400, 135, 115235),
-    ('Tom Jones', 'Gold', 'DL222', 'Boeing 777', 264, 1765, 205767),
-    ('Jessica James', 'Silver', 'DL143', 'Boeing 747', 400, 135, 127656),
-    ('Sam Rio', 'None', 'DL143', 'Boeing 747', 400, 135, 2653),
-    ('Ana Janco', 'Silver', 'DL222', 'Boeing 777', 264, 1765, 136773),
-    ('Jennifer Cortez', 'Gold', 'DL222', 'Boeing 777', 264, 1765, 300582),
-    ('Jessica James', 'Silver', 'DL122', 'Airbus A330', 236, 4370, 127656),
-    ('Sam Rio', 'None', 'DL37', 'Boeing 747', 400, 531, 2653),
-    ('Christian Janco', 'Silver', 'DL222', 'Boeing 777', 264, 1765, 14642);
+CREATE TABLE flights
+(
+    flight_number VARCHAR(255) PRIMARY KEY ,
+    flight_mileage INT,
+    aircraft VARCHAR(255),
+    FOREIGN KEY(aircraft) REFERENCES aircraft(models)
+);
 
-SELECT count(DISTINCT flightNumber) AS totalVuelos
-FROM aerolineas;
+CREATE TABLE customer
+(
+    ID INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255),
+    status VARCHAR(255),
+    total_customer_mileage DECIMAL
+);
 
-SELECT AVG(flightMileage) AS promediodistanciaVuelo
-FROM aerolineas;
+CREATE TABLE bookings
+(
+    ID INT PRIMARY KEY AUTO_INCREMENT,
+    customer_ID INT,
+    flight_ID VARCHAR(255),
+    FOREIGN KEY(flight_ID) REFERENCES flights(flight_number),
+    FOREIGN KEY(customer_ID) REFERENCES customer(ID)
+);
 
-SELECT AVG(totalAircraftSeats) AS promedioAsientos
-FROM aerolineas;
+INSERT INTO aircraft(models, total_aircraftSeats)
+VALUES('Boeing 747', 400),
+      ('Boeing 777', 264),
+      ('Airbus A330', 236);
 
-SELECT customerStatus, AVG(totalCustomerMileage) AS averageMileage
-FROM aerolineas
-GROUP BY customerStatus;
+INSERT INTO flights(flight_number, flight_mileage, aircraft)
+VALUES('DL143',135,'Boeing 747'),
+      ('DL122',4370, 'Airbus A330'),
+      ('DL53', 2078, 'Boeing 777'),
+      ('DL222', 1765, 'Boeing 777'),
+      ('DL37', 531, 'Boeing 747');
 
-SELECT customerStatus, MAX(totalCustomerMileage) AS maxMileage
-FROM aerolineas
-GROUP BY customerStatus;
+INSERT INTO customer(name, status, total_customer_mileage)
+VALUES('Agustine Riviera', 'Silver', 115235),
+      ('Alaina Sepulvida', 'None', 6008),
+      ('Tom Jones', 'Gold', 205767),
+      ('Sam Rio', 'None', 2653),
+      ('Jessica James', 'Silver', 127656),
+      ('Ana Janco', 'Silver', 136773),
+      ('Jennifer Cortez', 'Gold', 300582),
+      ('Christian Janco', 'Silver', 14642);
 
-SELECT COUNT(DISTINCT aircraft) AS totalBoeingAircraft
-FROM aerolineas
-WHERE aircraft LIKE 'Boeing%';
+INSERT INTO bookings(customer_ID, flight_ID)
+VALUES(1, 'DL143'),
+      (1, 'DL122'),
+      (2, 'DL122'),
+      (1, 'DL143'),
+      (3, 'DL122'),
+      (3, 'DL53'),
+      (1, 'DL143'),
+      (4, 'DL143'),
+      (1, 'DL143'),
+      (3, 'DL222'),
+      (5, 'DL143'),
+      (4, 'DL143'),
+      (6, 'DL222'),
+      (7, 'DL222'),
+      (5, 'DL122'),
+      (4, 'DL37'),
+      (8, 'DL222');
 
-SELECT * FROM aerolineas
-WHERE flightMileage BETWEEN 300 AND 2000;
+SELECT COUNT(*)
+FROM flights;
 
-SELECT customerStatus, AVG(flightMileage) AS averageFlightMileage
-FROM aerolineas
-GROUP BY customerStatus;
+SELECT AVG(flight_mileage)
+FROM flights;
 
-SELECT aircraft, COUNT(*) AS aircraftReservation
-FROM aerolineas
-WHERE customerStatus = 'Gold'
-GROUP BY aircraft
-ORDER BY aircraftReservation DESC;
+SELECT AVG(total_aircraftSeats)
+FROM aircraft;
+
+SELECT status, AVG(total_customer_mileage)
+FROM customer
+GROUP BY status;
+
+SELECT status, MAX(total_customer_mileage)
+FROM customer
+GROUP BY status;
+
+SELECT COUNT(*)
+FROM aircraft
+WHERE models LIKE '%Boeing%';
+
+SELECT *
+FROM flights
+WHERE flight_mileage BETWEEN 300 AND 2000;
+
+SELECT c.status, AVG(f.flight_mileage) AS average_mileage
+FROM customer c
+         JOIN bookings b ON c.ID = b.customer_ID
+         JOIN flights f ON b.flight_ID = f.flight_number
+GROUP BY c.status;
+
+SELECT f.aircraft, COUNT(*) AS total_reservations
+FROM customer c
+         JOIN bookings b ON c.ID = b.customer_ID
+         JOIN flights f ON b.flight_ID = f.flight_number
+WHERE c.status = 'Gold'
+GROUP BY f.aircraft
+ORDER BY total_reservations DESC
+    LIMIT 1;
